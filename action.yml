@@ -1,0 +1,21 @@
+---
+name: 'Droplet rebuild'
+description: 'Rebuild an existing Digital Ocean droplet'
+inputs:
+  digital-ocean-access-token:
+    description: Reade/Write Digital Ocean api key
+    required: true
+  droplet-id:
+    description: The id of the droplet to be rebuilt
+    required: true
+  image:
+    description: |
+        Digital Ocean image id (e.g. ubuntu-16-04-x64) see
+        README for easy way to get list of valid image names
+    required: true
+    default: ubuntu-20-04-x64
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.digital-ocean-api-key }}
