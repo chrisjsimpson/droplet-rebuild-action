@@ -18,6 +18,6 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.digital-ocean-api-key }}
+    - ${{ inputs.digital-ocean-access-token }}
     - ${{ inputs.droplet-id }}
     - ${{ inputs.image }}
