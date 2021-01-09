@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -x
+
 TOKEN=$1
 IMAGE=$2
 DROPLET=$3
@@ -8,6 +10,7 @@ echo Num args passed $#
 echo Token is $TOKEN >> /tmp/debug
 echo Image is $IMAGE >> /tmp/debug
 echo Droplet is $DROPLET >> /tmp/debug
+
 cat /tmp/debug
 
 check_progress (){
@@ -23,6 +26,8 @@ check_progress (){
   fi
 }
 
+
+curl -v -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" -d '{"type":"rebuild","image":"'$IMAGE'"}' "https://api.digitalocean.com/v2/droplets/$DROPLET/actions"
 
 ACTION_ID=`curl -v -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" -d '{"type":"rebuild","image":"'$IMAGE'"}' "https://api.digitalocean.com/v2/droplets/$DROPLET/actions" | jq .action.id`
 
