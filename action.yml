@@ -19,3 +19,5 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.digital-ocean-api-key }}
+    - ${{ inputs.droplet-id }}
+    - ${{ inputs.image }}
