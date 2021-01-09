@@ -2,16 +2,15 @@
 
 set -x
 
+if [ $# != 3 ]
+then
+  echo "Must pass Digital Ocean access token, existing droplet id, and image name slug"
+  exit 1
+fi
+
 TOKEN=$1
 DROPLET=$2
 IMAGE=$3
-
-echo Num args passed $#
-echo Token is $TOKEN >> /tmp/debug
-echo Image is $IMAGE >> /tmp/debug
-echo Droplet is $DROPLET >> /tmp/debug
-
-cat /tmp/debug
 
 check_progress (){
   ACTION_STATUS=`curl -s -X GET -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" "https://api.digitalocean.com/v2/actions/$ACTION_ID" | jq -r .action.status`
