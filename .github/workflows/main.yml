@@ -1,0 +1,20 @@
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  rebuild_droplet_job:
+    runs-on: ubuntu-latest
+    name: Rebuild Digital Ocean Droplet
+    steps:
+    - name: Debug secrets
+      run: |
+        echo ${{ secrets.DIGITAL_OCEAN_ACCESS_TOKEN }}
+        echo ${{ secrets.DROPLET_ID }}
+        echo ${{ secrets.IMAGE }}
+    - name: Trigger droplet rebuild & wait for completion
+      uses: chrisjsimpson/droplet-rebuild-action@v0.6
+      with:
+        digital-ocean-access-token: ${{ secrets.DIGITAL_OCEAN_ACCESS_TOKEN }}
+        droplet-id: ${{ secrets.DROPLET_ID }}
+        image: ${{ secrets.IMAGE }}
