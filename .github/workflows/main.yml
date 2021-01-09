@@ -13,7 +13,7 @@ jobs:
         echo ${{ secrets.DROPLET_ID }}
         echo ${{ secrets.IMAGE }}
     - name: Trigger droplet rebuild & wait for completion
-      uses: chrisjsimpson/droplet-rebuild-action@v0.7
+      uses: chrisjsimpson/droplet-rebuild-action@v0.8
       with:
         digital-ocean-access-token: ${{ secrets.DIGITAL_OCEAN_ACCESS_TOKEN }}
         droplet-id: ${{ secrets.DROPLET_ID }}
