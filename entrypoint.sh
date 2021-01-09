@@ -1,11 +1,5 @@
 #!/bin/sh
 
-if [ $# != 3 ]
-then
-  echo "Must pass token, image, and droplet id"
-  exit 1
-fi
-
 TOKEN=$1
 IMAGE=$2
 DROPLET=$3
