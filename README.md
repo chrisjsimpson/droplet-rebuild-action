@@ -27,7 +27,7 @@ default: ubuntu-20-04-x64
 ### droplet-id:
 
 The id of the droplet to be rebuilt. You can find this by going to:
-https://cloud.digitalocean.com/droplets?i=ba047f
+https://cloud.digitalocean.com/droplets
 
 required: true
 
