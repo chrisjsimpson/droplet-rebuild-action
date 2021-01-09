@@ -4,6 +4,11 @@ TOKEN=$1
 IMAGE=$2
 DROPLET=$3
 
+echo Num args passed $#
+echo Token is $TOKEN
+echo Image is $IMAGE
+echo Droplet is $DROPLET
+
 check_progress (){
   ACTION_STATUS=`curl -s -X GET -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" "https://api.digitalocean.com/v2/actions/$ACTION_ID" | jq -r .action.status`
   echo The current action status is $ACTION_STATUS
@@ -18,8 +23,8 @@ check_progress (){
 }
 
 
+ACTION_ID=`curl -v -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" -d '{"type":"rebuild","image":"'$IMAGE'"}' "https://api.digitalocean.com/v2/droplets/$DROPLET/actions" | jq .action.id`
 
-ACTION_ID=`curl -s -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" -d '{"type":"rebuild","image":"'$IMAGE'"}' "https://api.digitalocean.com/v2/droplets/$DROPLET/actions" | jq .action.id`
 
 echo Action ID is $ACTION_ID
 
